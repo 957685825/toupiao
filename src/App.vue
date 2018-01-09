@@ -14,7 +14,9 @@ export default {
   
 }
 </script>
+
 <style lang="less">
+@import './assets/less/style.less';
 h1, h2 {
   font-weight: normal;
 }
@@ -40,6 +42,8 @@ a {text-decoration: none;}
 	opacity: 0;
 	transform: translateX(-100%);
 }
-
+.mint-header{
+	background-color: #000000;
+}
 
 </style>
