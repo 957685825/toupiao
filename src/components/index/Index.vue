@@ -19,6 +19,35 @@
 			  </mt-swipe-item>
 			</mt-swipe>
 		</div>
+		<div class="indexContent">
+			<div class="serch">
+				<div class="contents">2018<span>年</span>12<span>月</span></div>
+			</div>
+			<div class="list">
+				<div class="listContent">
+					<div class="bottomBox">
+						<img src="../../assets/image/Watch.png"/>
+						<p class="times">剩余1天23小时29分</p>
+						<p class="find">查看</p>
+						
+					</div>
+				</div>
+				<div class="listContent">
+					<div class="bottomBox">
+						<img src="../../assets/image/Watch.png"/>
+						<p class="times">剩余1天23小时29分</p>
+						<p class="find">查看</p>
+					</div>
+				</div>
+				<div class="listContent">
+					<div class="bottomBox">
+						<img src="../../assets/image/Watch.png"/>
+						<p class="times">剩余1天23小时29分</p>
+						<p class="find">查看</p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
