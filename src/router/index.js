@@ -4,6 +4,10 @@ import Vue from 'vue'
 import vueRouter from "vue-router"
 //首页
 import Index from '@/components/index/Index.vue'
+//活动详情
+import ActivityContent from '@/components/activity/activityContent.vue'
+//专家介绍
+import Expert from '@/components/Expert/Expert.vue'
 
 
 
@@ -21,6 +25,20 @@ let router =  new vueRouter({
 	      component: Index,
 	      meta:{
 	 			title:"首页"
+	 	  }
+	    } , { //活动详情页
+	      path: '/ActivityContent',
+	      name: 'ActivityContent',
+	      component: ActivityContent,
+	      meta:{
+	 			title:"活动详情页"
+	 	  }
+	    } , { //专家介绍
+	      path: '/Expert',
+	      name: 'Expert',
+	      component: Expert,
+	      meta:{
+	 			title:"专家介绍"
 	 	  }
 	    }
 	    
