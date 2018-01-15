@@ -3,9 +3,11 @@
 		<div class="videImage">
 			<img src="../../assets/image/play.png" alt="">
 		</div>
+		<router-link to="VoteOk">
 		<div class="bttyi">
 			<img src="../../assets/image/bangtatouyip_03.png" alt="">
 		</div>
+		</router-link>
 		<div class="zjjs">
 			<img src="../../assets/image/tx_03.png" alt="">
 			<h2>简介:</h2>

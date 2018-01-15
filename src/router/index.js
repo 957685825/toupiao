@@ -8,6 +8,8 @@ import Index from '@/components/index/Index.vue'
 import ActivityContent from '@/components/activity/activityContent.vue'
 //专家介绍
 import Expert from '@/components/Expert/Expert.vue'
+//投票成功
+import VoteOk from '@/components/Vote/VoteOk.vue'
 
 
 
@@ -39,6 +41,13 @@ let router =  new vueRouter({
 	      component: Expert,
 	      meta:{
 	 			title:"专家介绍"
+	 	  }
+	    }, { //投票成功
+	      path: '/VoteOk',
+	      name: 'VoteOk',
+	      component: VoteOk,
+	      meta:{
+	 			title:"投票成功"
 	 	  }
 	    }
 	    
