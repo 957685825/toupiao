@@ -1,6 +1,6 @@
 <template>
 	<div id="actityContent">
-		<div class="headerImage">
+		<div class="headerImage" :style="{backgroundImage: 'url('+HOST+dataList.bannerUrl+')'}">
 			
 		</div>
 		<div class="actityTimer">
@@ -97,14 +97,19 @@ import { Swipe, SwipeItem,Indicator } from 'mint-ui';
 export default {
   data () {
     return {
-      indexImg:[]
+      indexImg:[],
+      dataList:'',
+      HOST:Api.HOST
     }
   },
   methods:{
 		
   },
   mounted(){
-	Api.activieList.contents({cid:this.$route.query.id}).then(res=>{
+	Api.activieList.initActivie({cid:this.$route.query.id}).then(res=>{
+		if(res.statusText === 'OK'){
+			this.dataList = res.data.bean
+		}
 		console.log(res)
 	})
    }

@@ -10,6 +10,8 @@ const STATIC_SERVER_HOST = HOST_STATIC_SERVER_HOST;
 
 //首页、活动列表
 const ACTIVIE_LIST = `${STATIC_SERVER_HOST}cogon-wxmeet/wxcampaign/home`
+//初始化活动
+const ACTIVIE_INIT = `${STATIC_SERVER_HOST}cogon-wxmeet/wxvote/initvotes`
 //活动详情
 const ACTIVIE_CONTENT = `${STATIC_SERVER_HOST}cogon-wxmeet/wxcampaign/details`
 
@@ -38,6 +40,9 @@ export default {
       },
       contents:(jsons)=>{
         return VueHttp.$http.get(ACTIVIE_CONTENT,{params:jsons})
+      },
+      initActivie:(jsons)=>{
+      	return VueHttp.$http.get(ACTIVIE_INIT,{params:jsons})
       }
 
    },
