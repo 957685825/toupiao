@@ -7,6 +7,9 @@ const HOST = HOST_CONFIG;
 
 //图片服务器（静态资源）服务器地址
 const STATIC_SERVER_HOST = HOST_STATIC_SERVER_HOST;
+//首页、活动列表
+const ACTIVIE_LIST = `${STATIC_SERVER_HOST}cogon-wxmeet/wxcampaign/home`
+const ACTIVIE_CONTENT = `${STATIC_SERVER_HOST}cogon-wxmeet/wxcampaign/details`
 
 
 const VueHttp = new Vue();
@@ -25,6 +28,15 @@ export default {
   		test:(inter)=>{
   			return  VueHttp.$http.get(HOST+inter)   
   		}
+   },
+   activieList:{
+      list:(jsons)=>{
+        return VueHttp.$http.get(ACTIVIE_LIST,{params:jsons})
+      },
+      contents:(jsons)=>{
+        return VueHttp.$http.get(ACTIVIE_CONTENT,{params:jsons})
+      }
+
    },
    getUserInfo:{
    	 getUserInfo:(jsons)=>{
@@ -59,6 +71,7 @@ export default {
    	 	callback('123')
    	 }	   	  
    },
+   HOST:HOST,
    $$ajax(inter,data,callback){	  			
 			if(data && url !=''){
 				console.log('post请求')
