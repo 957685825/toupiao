@@ -33,7 +33,6 @@
 						<img src="../../assets/image/Watch.png"/>
 						<p class="times">剩余1天23小时29分</p>	
 					<router-link :to="{ path : 'ActivityContent',query:{id:itme.id}}" ><p class="find">查看</p></router-link>		
-					<!-- <router-link :to="{ path: 'ActivityContent' }"><p class="find">Home</p></router-link> -->
 					</div>
 				</div>
 			  <!--  <div class="listContent">

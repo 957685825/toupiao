@@ -7,9 +7,12 @@ const HOST = HOST_CONFIG;
 
 //图片服务器（静态资源）服务器地址
 const STATIC_SERVER_HOST = HOST_STATIC_SERVER_HOST;
+
 //首页、活动列表
 const ACTIVIE_LIST = `${STATIC_SERVER_HOST}cogon-wxmeet/wxcampaign/home`
+//活动详情
 const ACTIVIE_CONTENT = `${STATIC_SERVER_HOST}cogon-wxmeet/wxcampaign/details`
+
 
 
 const VueHttp = new Vue();
