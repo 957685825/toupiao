@@ -1,22 +1,37 @@
 <template>
 	<div id="expert">
-		<div class="videImage">
+		<div class="videImageDetiles" v-if='dataList.bean.purl == ""' >
 			<img src="../../assets/image/play.png" alt="">
 		</div>
-		<router-link to="VoteOk">
-		<div class="bttyi">
+		<div class="videImageDetiles" v-else :style="{backgroundImage: 'url('+HOST+dataList.bean.purl+')'}" >
+			<img src="../../assets/image/play.png" alt="">
+		</div>
+		<!-- <router-link to="VoteOk"> -->
+		<div class="bttyi"  v-tap="{methods:onClickHandler}" >
 			<img src="../../assets/image/bangtatouyip_03.png" alt="">
 		</div>
-		</router-link>
+		<!-- </router-link> -->
 		<div class="zjjs">
-			<img src="../../assets/image/tx_03.png" alt="">
+		    <img v-if = 'dataList.bean.url === ""' src="../../assets/image/tx_03.png"alt="">
+			<img v-else :src="HOST+dataList.bean.url "alt="">
+			<!-- <img src="../../assets/image/tx_03.png" alt=""> -->
 			<h2>简介:</h2>
-			&nbsp;&nbsp;&nbsp;&nbsp;现为中国医药教育协会生殖内分泌专业委员会常务委员、中国科普作家协会医学科普创作专业委员会委员、山西省女医师协会科学普及专业委员会副主任委员、山西省女医师协会生殖与遗传专业委员会常务委员、山西省山西省女医师协会生殖与遗传专业委员会常务委员、山西省女医师协会妇产科专业委员会常务委员、山西省妇幼保健协会女性生殖内分泌专业专家委员会常务委员、山西省优生优育协会理事会常务理事、山西省基层卫生健康促进与教育专业委员会常务委员、山西省医学会科学普及专业委员会秘书长、中国妇女发展基金会“人人健康公益巡讲中国行”项目指导专家、省级健康教育专家委员会专家、 太原市健康教育专家委员会专家、山西省科学普及专业委员会女性健康学组组长
-		
+			&nbsp;&nbsp;&nbsp;&nbsp;<p v-html='dataList.bean.remarks'></p>
 		</div>
-		<div class="fhsy">
-		 <img src="../../assets/image/home.png" alt="">
-			返回首页
+		 <router-link to="/">
+			<div class="fhsy">
+			 <img src="../../assets/image/home.png" alt="">
+				返回首页
+			</div>
+		</router-link>
+		<!--弹窗-->
+		<div v-show='propBoole'>
+			<div class="pop-bg"></div>
+			<div class="pop-content">
+				<p class="pop-already-word"></p>
+				<p class="pop-already"></p>
+				<p class="pop-thanks">谢谢参与</p>
+			</div>
 		</div>
 	</div>
 </template>
@@ -27,15 +42,39 @@ import { Swipe, SwipeItem,Indicator } from 'mint-ui';
 export default {
   data () {
     return {
-      indexImg:[]
+      indexImg:[],
+      dataList:[],
+      HOST:Api.HOST,
+      propBoole:false
     }
   },
   methods:{
-		
+	onClickHandler(){
+		var vm = this
+		Api.details.checkVote({uid:this.$route.query.uid,cid:this.$route.query.cid}).then(res=>{
+			 console.log(res)
+			if(res.data.msg === ''){
+			  location.href="#VoteOk";
+			}else if(res.data.msg === "请勿重复投票"){
+				vm.propBoole  = true
+				setTimeout(function(){
+					vm.propBoole  = false		
+				},1000)
+			}
+		},err=>{
+
+		})	
+	}	
   },
   mounted(){
-	
-   }
+
+	Api.details.peopleDetails({uid:this.$route.query.uid,cid:this.$route.query.cid}).then(res=>{
+		this.dataList = res.data
+	     console.log(res)
+	},err=>{
+
+	})	
+  }
 
 }
 </script>

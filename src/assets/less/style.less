@@ -1,3 +1,14 @@
+#app #index .mint-swipe-item .a_herf > img{
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto auto;
+  width: inherit;
+}
 html,body{
     width: 100%;
     height: 100%;
@@ -162,7 +173,8 @@ button{
       height: 8.53rem;
       background-image: url(../image/actityheader_01.png);
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size:contain;
+      background-position: center;
     }
     .actityTimer{
       width: 100%;
@@ -339,6 +351,8 @@ button{
               background-size: 100%;
               margin-left: 1rem;
               margin-top: 0.53rem;
+              background-size: contain;
+              background-position: center;
 
             }
             .className{
@@ -386,7 +400,7 @@ button{
     background-size: 100%;
     overflow: hidden;
     overflow-y:auto; 
-    .videImage{
+    .videImageDetiles{
       width: 17.5rem;
       height: 9.97rem;
       background-image: url(../image/spbjt_03.png);
@@ -440,6 +454,8 @@ button{
       }
       >p{
         float: left;
+        text-indent: 1.4rem;
+        color: #666;
       }
       >h2{
         color: #fa7669;
@@ -706,7 +722,7 @@ button{
             width: 11.6rem;
             height: 100%;
             float: left;
-            .videImage{
+       /*     .videImage{
               width: 10rem;
               height: 4.9rem;
               background-image: url(../image/videbg_09.png) ;
@@ -715,7 +731,9 @@ button{
               margin-left: 1rem;
               margin-top: 0.53rem;
 
-            }
+             
+
+            }*/
             .className{
               text-align: center;
               font-size: 0.69rem;
@@ -754,14 +772,14 @@ button{
       }
    }
    #expert{
-    width: 100%;
+  /*  width: 100%;
     height: 100%;
     background:url(../image/bg.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
     overflow: hidden;
-    overflow-y:auto; 
-    .videImage{
+    overflow-y:auto; */
+/*    .videImage{
       width: 17.5rem;
       height: 9.97rem;
       background-image: url(../image/spbjt_03.png);
@@ -769,6 +787,8 @@ button{
       margin:0 auto;
       margin-top: 1.6rem;
       position: relative;
+      background-size: contain;
+      background-position: center;
       >img{
         max-height: 2.88rem;
         max-height: 2.88rem;
@@ -780,7 +800,7 @@ button{
         margin: auto auto;
       }
 
-    }
+    }*/
     .bttyi{
       height: 2.77rem;
       width: 17.5rem;
@@ -906,4 +926,53 @@ button{
     }
    }
    
+}
+
+/* 弹窗 */
+.pop-bg{
+  width: 100%;
+  height: 100%;
+  background: #000;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  opacity: 0.5;
+}
+.pop-content{
+  width: 11.65rem;
+  height: 9.68rem;
+  background: url(../image/popup-bg.png);
+  position: fixed;
+  z-index: 11;
+  top: 0;
+  left: 50%;
+  top: 20%;
+  margin-left: -5.825rem;
+  background-size: 100%;
+  .pop-already-word{
+    width: 6.187rem;
+    height: 1.227rem;
+    background: url(../image/pop-already-word.png);
+    background-size: 100%;
+    left: 50%;
+    position: absolute;
+    margin-left: -3.0935rem;
+    margin-top:1.3333333333333333rem;
+  }
+  .pop-already{
+    width: 3.44rem;
+    height: 2.986666666666667rem;
+    background: url(../image/pop-already.png);
+    background-size: 100%;
+    left: 50%;
+    position: absolute;
+    margin-left: -1.72rem;
+    margin-top:2.88rem;
+  }
+  .pop-thanks{
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 6.346666666666667rem;
+  }
 }

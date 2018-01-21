@@ -2,24 +2,15 @@
 	<div id="index">
 		<div class="swipeDiv">
 			<mt-swipe  :auto="4000">
-			  <mt-swipe-item>
+			  <mt-swipe-item v-for='itmes in imgUrl'>
 			  	<a class="a_herf">		  		
-			  		<!--<img src="../../assets/image/banner_01.png"/>-->
+			  		<img :src="Host+itmes"/>
 			  	</a>
 			  </mt-swipe-item>
-			  <mt-swipe-item>
-			  	<a class="a_herf">		  		
-			  		<!--<img src="../../assets/image/banner_01.png"/>-->
-			  	</a>
-			  </mt-swipe-item>
-			  <mt-swipe-item>
-			  	<a class="a_herf">		  		
-			  		<!--<img src="../../assets/image/banner_01.png"/>-->
-			  	</a>
-			  </mt-swipe-item>
+			  
 			</mt-swipe>
 		</div>
-		<div class="indexContent"  style="margin-top:0">
+		<div class="indexContent"  style="margin-top:0.6rem">
 			<div class="findInput" v-bind:hidden="true">
 				<input type="text" placeholder="活动查询">
 			</div>
@@ -55,7 +46,8 @@ export default {
     return {
       indexImg:[],
       dataList : [],
-      Host:Api.HOST
+      Host:Api.HOST,
+      imgUrl:[]
     }
   },
   methods:{
@@ -63,8 +55,9 @@ export default {
   		this.dataList = []
   		var vm = this
   		Api.activieList.list({pageNo:1,pageSize:1000}).then(res=>{
-			console.log(res.data.list)	
+			console.log(res.data)	
 			if(res.statusText === 'OK'){
+			   this.imgUrl = res.data.carousels
 			   this.dataList = res.data.list
 			   this.dataList[0].num +=1;
 			   this.$forceUpdate();

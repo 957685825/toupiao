@@ -6,7 +6,7 @@
 		<div class="actityTimer">
 			<img src="../../assets/image/tpdjs_03.png" alt="">
 			<div class="timers">
-				<span>08</span>天<span>23</span>小时<span>12</span>分<span>24</span>秒
+				<span>{{data.countdown.dd}}</span>天<span>{{data.countdown.hh}}</span>小时<span>{{data.countdown.mm}}</span>分<span>{{data.countdown.ss}}</span>秒
 			</div>
 			<div class="btnImage">
 				<div class="lefbtn btn">
@@ -18,21 +18,22 @@
 				</div>
 			</div>
 		</div>
-		<div class="findeInput">
+		<div class="findeInput" style="height:2rem">
 			<div class="imageBox">
 				<img src="../../assets/image/sphumd_03.png" alt="">
 			</div>
-			<div class="inputText">
+			<div class="inputText" style="display:none">
 				<input type="text" placeholder='请输入姓名或医院' >
 			</div>
 		</div>
 		<div class="contentList">
-			<div class="list">
+			<div class="list" v-for="itmes in data.list">
 				<div class="leftBox">
-				<router-link to="Expert">
-					<img src="../../assets/image/tx_03.png" alt="">
+				<router-link  :to="{ path : 'Expert',query:{uid:itmes.id,cid:activityId}}">
+					<img v-if = 'itmes.url === ""' src="../../assets/image/tx_03.png"alt="">
+					<img v-else :src="HOST+itmes.url "alt="">
 				</router-link>	
-					<p>姓名</p>
+					<p>{{itmes.name}}</p>
 					<div class="zan">
 						<img src="../../assets/image/zan_15.png" alt="">
 						<p>投票</p>
@@ -42,18 +43,21 @@
 					<div class="IndexBq">1</div>
 				</div>
 				<div class="rightBox">
-					<div class="videImage">
+					<div class="videImage" v-if='itmes.purl== ""'>
+						
+					</div>
+					<div class="videImage" v-else :style="{backgroundImage: 'url('+HOST+itmes.purl+')'}">
 						
 					</div>
 					<div class="className">
-						妇科内分泌相关病例分享
+						{{itmes.title}}
 					</div>
 					<div class="tpNumber">
-						4222票
+						{{itmes.orderNum}}票
 					</div>
 				</div>
 			</div>
-			<div class="list">
+			<!-- <div class="list">
 				<div class="leftBox">
 					<router-link to="Expert">
 						<img src="../../assets/image/tx_03.png" alt="">
@@ -78,7 +82,7 @@
 						4222票
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="bottomBox">
 			<h2>评选规则</h2>
@@ -99,21 +103,53 @@ export default {
     return {
       indexImg:[],
       dataList:'',
-      HOST:Api.HOST
+      HOST:Api.HOST,
+      data:[],
+      activityId:''
     }
   },
   methods:{
+  	initData(){
+		Api.activieList.initActivie({cid:this.$route.query.id}).then(res=>{
+		if(res.statusText === 'OK'){
+			this.dataList = res.data.campaign
+			this.data = res.data
+			this.activityId = res.data.campaign.id
+
+		}
+		console.log(this.data)
+	})
+  	}
 		
   },
   mounted(){
-	Api.activieList.initActivie({cid:this.$route.query.id}).then(res=>{
-		if(res.statusText === 'OK'){
-			this.dataList = res.data.bean
-		}
-		console.log(res)
-	})
-   }
+  	this.initData()
+  	var vm = this
+  	var time = setInterval(jishi,1000)
 
+  	function jishi(){
+		//vm.initData()
+		if(vm.data.countdown.ss > 0){
+			vm.data.countdown.ss--	
+		}
+		else if(vm.data.countdown.ss == 0){
+			vm.data.countdown.mm--
+			vm.data.countdown.ss = 59
+		}
+		 if(vm.data.countdown.mm <= 0){
+			vm.data.countdown.hh--
+			vm.data.countdown.mm = 59
+		} if(vm.data.countdown.hh == 0 && vm.data.countdown.dd > 0){
+			vm.data.countdown.dd--
+			vm.data.countdown.hh = 24
+		}
+		if(vm.data.countdown.dd == 0){
+		    clearInterval(time)
+			return
+		 //vm.$forceUpdate()
+		}
+	}
+   }
 }
 </script>
 

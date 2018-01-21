@@ -15,6 +15,10 @@ const ACTIVIE_INIT = `${STATIC_SERVER_HOST}cogon-wxmeet/wxvote/initvotes`
 //活动详情
 const ACTIVIE_CONTENT = `${STATIC_SERVER_HOST}cogon-wxmeet/wxcampaign/details`
 
+//候选人详情
+const DETAILS_PEOPLE =  `${STATIC_SERVER_HOST}cogon-wxmeet/wxvote/details`
+//投票
+const CHECK_VOTE = `${STATIC_SERVER_HOST}cogon-wxmeet/wxvote/checkVote`
 
 
 const VueHttp = new Vue();
@@ -43,6 +47,15 @@ export default {
       },
       initActivie:(jsons)=>{
       	return VueHttp.$http.get(ACTIVIE_INIT,{params:jsons})
+      }
+
+   },
+   details:{
+       peopleDetails:(jsons)=>{
+        return VueHttp.$http.get(DETAILS_PEOPLE,{params:jsons})
+      },
+      checkVote:(jsons)=>{
+        return VueHttp.$http.get(CHECK_VOTE,{params:jsons})
       }
 
    },
