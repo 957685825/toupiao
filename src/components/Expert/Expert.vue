@@ -45,7 +45,9 @@ export default {
       indexImg:[],
       dataList:[],
       HOST:Api.HOST,
-      propBoole:false
+      propBoole:false,
+      tittles:'',
+      orderNum:0
     }
   },
   methods:{
@@ -53,8 +55,9 @@ export default {
 		var vm = this
 		Api.details.checkVote({uid:this.$route.query.uid,cid:this.$route.query.cid}).then(res=>{
 			 console.log(res)
+			 console.log(res.data.bean)
 			if(res.data.msg === ''){
-			  location.href="#VoteOk";
+				this.$router.push( { path : '/VoteOk', query : { 'cid' : this.$route.query.cid ,'contents':this.tittles,'orderNum':this.orderNum}})
 			}else if(res.data.msg === "请勿重复投票"){
 				vm.propBoole  = true
 				setTimeout(function(){
@@ -70,6 +73,8 @@ export default {
 
 	Api.details.peopleDetails({uid:this.$route.query.uid,cid:this.$route.query.cid}).then(res=>{
 		this.dataList = res.data
+		this.tittles = res.data.bean.title
+		this.orderNum = res.data.bean.orderNum
 	     console.log(res)
 	},err=>{
 

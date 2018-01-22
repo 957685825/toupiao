@@ -9,12 +9,12 @@
 				<span>{{data.countdown.dd}}</span>天<span>{{data.countdown.hh}}</span>小时<span>{{data.countdown.mm}}</span>分<span>{{data.countdown.ss}}</span>秒
 			</div>
 			<div class="btnImage">
-				<router-link to='ActivityIntroduce'>
+				<router-link :to="{path : 'ActivityIntroduce',query:{cid:activityId}}">
 					<div class="lefbtn btn">
 						<img src="../../assets/image/hdjs_03.png" alt="">
 					</div>
 				</router-link>
-				<router-link to='RankingViewList'>
+				<router-link :to="{path : 'RankingViewList',query:{cid:activityId}}">
 					<div class="rightbtn btn">
 						<img src="../../assets/image/zphb_03.png" alt="">
 					</div>
@@ -32,7 +32,7 @@
 		<div class="contentList">
 			<div class="list" v-for="itmes in data.list">
 				<div class="leftBox">
-				<router-link  :to="{ path : 'Expert',query:{uid:itmes.id,cid:activityId}}">
+				<router-link  :to="{path : 'Expert',query:{uid:itmes.id,cid:activityId}}">
 					<img v-if = 'itmes.url === ""' src="../../assets/image/tx_03.png"alt="">
 					<img v-else :src="HOST+itmes.url "alt="">
 				</router-link>	

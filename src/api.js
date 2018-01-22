@@ -20,6 +20,9 @@ const DETAILS_PEOPLE =  `${STATIC_SERVER_HOST}cogon-wxmeet/wxvote/details`
 //投票
 const CHECK_VOTE = `${STATIC_SERVER_HOST}cogon-wxmeet/wxvote/checkVote`
 
+//投票排行
+const SORT_VOTE = `${STATIC_SERVER_HOST}cogon-wxmeet/wxvote/sortVote`
+
 
 const VueHttp = new Vue();
 
@@ -47,6 +50,9 @@ export default {
       },
       initActivie:(jsons)=>{
       	return VueHttp.$http.get(ACTIVIE_INIT,{params:jsons})
+      },
+      sortVote:(jsons)=>{
+        return VueHttp.$http.get(SORT_VOTE,{params:jsons})
       }
 
    },
@@ -56,6 +62,9 @@ export default {
       },
       checkVote:(jsons)=>{
         return VueHttp.$http.get(CHECK_VOTE,{params:jsons})
+      },
+      wxCampaign:(jsons)=>{
+        return VueHttp.$http.get(WX_CAMPAIGN,{params:jsons})
       }
 
    },
