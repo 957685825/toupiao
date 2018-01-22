@@ -6,10 +6,14 @@ import vueRouter from "vue-router"
 import Index from '@/components/index/Index.vue'
 //活动详情
 import ActivityContent from '@/components/activity/activityContent.vue'
+//活动介绍
+import ActivityIntroduce from '@/components/activity/activityIntroduce.vue'
 //专家介绍
 import Expert from '@/components/Expert/Expert.vue'
 //投票成功
 import VoteOk from '@/components/Vote/VoteOk.vue'
+//投票排行榜
+import RankingViewList from '@/components/ranking/rankingViewList.vue'
 
 
 
@@ -35,6 +39,13 @@ let router =  new vueRouter({
 	      meta:{
 	 			title:"活动详情页"
 	 	  }
+	    } , { //活动介绍
+	      path: '/ActivityIntroduce',
+	      name: 'ActivityIntroduce',
+	      component: ActivityIntroduce,
+	      meta:{
+	 			title:"活动介绍"
+	 	  }
 	    } , { //专家介绍
 	      path: '/Expert',
 	      name: 'Expert',
@@ -48,6 +59,13 @@ let router =  new vueRouter({
 	      component: VoteOk,
 	      meta:{
 	 			title:"投票成功"
+	 	  }
+	    }, { //总排行榜
+	      path: '/RankingViewList',
+	      name: 'RankingViewList',
+	      component: RankingViewList,
+	      meta:{
+	 			title:"总排行榜"
 	 	  }
 	    }
 	    

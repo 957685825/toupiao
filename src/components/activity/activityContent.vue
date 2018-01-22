@@ -9,13 +9,16 @@
 				<span>{{data.countdown.dd}}</span>天<span>{{data.countdown.hh}}</span>小时<span>{{data.countdown.mm}}</span>分<span>{{data.countdown.ss}}</span>秒
 			</div>
 			<div class="btnImage">
-				<div class="lefbtn btn">
-					<img src="../../assets/image/hdjs_03.png" alt="">
-				</div>
-				<div class="rightbtn btn">
-					<img src="../../assets/image/zphb_03.png" alt="">
-					
-				</div>
+				<router-link to='ActivityIntroduce'>
+					<div class="lefbtn btn">
+						<img src="../../assets/image/hdjs_03.png" alt="">
+					</div>
+				</router-link>
+				<router-link to='RankingViewList'>
+					<div class="rightbtn btn">
+						<img src="../../assets/image/zphb_03.png" alt="">
+					</div>
+				</router-link>
 			</div>
 		</div>
 		<div class="findeInput" style="height:2rem">
