@@ -1,10 +1,10 @@
 <template>
 	<div id="voteOk">
 		<div class="okTittle">
-			<img src="../../assets/image/tpcgtittle_03.png" alt="">
+			<img src="http://cogon.artup.net/cogwx/static/img/tpcgtittle_03.png" alt="">
 		</div>
 		<div class="tpcgContent">
-			<img src="../../assets/image/ystx_03.png" alt="">
+			<img src="http://cogon.artup.net/cogwx/static/img/ystx_03.png" alt="">
 			<div class="contentText">{{contents}}</div>
 			<div class="tpnumber">{{orderNum}}</div>
 		</div>
@@ -27,7 +27,7 @@ export default {
   },
   methods:{
 	rankingList(){
-		this.$router.push( { path : '/RankingViewList', query : { 'cid' : this.$route.query.cid}});	
+		this.$router.push({ path : '/RankingViewList', query : { 'cid' : this.$route.query.cid}})	
 	}	
   },
   mounted(){

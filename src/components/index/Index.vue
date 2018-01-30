@@ -19,13 +19,15 @@
 				<button>搜索</button>
 			</div>
 			<div class="list">
-				<div class="listContent"  v-for='itme in dataList' :style="{backgroundImage: 'url('+Host+itme.bannerUrl+')'}">
+				<div class="tabCheck"><p class="activite" v-tap="{methods:checkIndex,index:1}">推荐活动</p><p v-tap="{methods:checkIndex,index:2}">往期回顾</p></div>
+				<div  class="listContent"  v-for='itme in dataList' :style="{backgroundImage: 'url('+Host+itme.bannerUrl+')'}">
 					<div class="bottomBox">
-						<img src="../../assets/image/Watch.png"/>
+						<img src="http://cogon.artup.net/cogwx/static/img/Watch.png"/>
 						<p class="times">剩余{{itme.countDownMap.dd}}天{{itme.countDownMap.hh}}小时{{itme.countDownMap.mm}}分</p>	
-					<router-link :to="{ path : 'ActivityContent',query:{id:itme.id,expire:itme.expire}}" ><p class="find">查看</p></router-link>		
+					<router-link :to="{ path : 'ActivityContent',query:{id:itme.id,expire:itme.expire}}" ><p v-bind:hidden="checkBool" class="find">查看</p></router-link>		
 					</div>
 				</div>
+			
 			  <!--<div class="listContent">
 					<div class="bottomBox">
 						<img src="../../assets/image/Watch.png"/>
@@ -47,7 +49,8 @@ export default {
       indexImg:[],
       dataList : [],
       Host:Api.HOST,
-      imgUrl:[]
+      imgUrl:[],
+      checkBool:false
     }
   },
   methods:{
@@ -66,7 +69,21 @@ export default {
 		},err=>{
 			console.log('网络错误')
 		})
-  	}	
+  	},
+  	checkIndex(params){
+  		$('.tabCheck p').removeClass('activite')
+  		$('.tabCheck p:nth-child('+params.index+')').addClass('activite')
+  		if(params.index === 2){
+  			this.checkBool = true
+  			Api.activieList.expire().then(res=>{
+  				 this.dataList = res.data.list
+  			})
+  		}else{
+  			this.checkBool = false
+  			this.initData()
+  		}
+//		alert(params.index)
+  	}
   },
   mounted(){
   	this.initData()

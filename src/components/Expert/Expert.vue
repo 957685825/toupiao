@@ -1,26 +1,29 @@
 <template>
 	<div id="expert">
-		<div class="videImageDetiles" v-if='dataList.bean.purl == ""' >
-			<img src="../../assets/image/play.png" alt="">
-		</div>
-		<div class="videImageDetiles" v-else :style="{backgroundImage: 'url('+HOST+dataList.bean.purl+')'}" >
-			<img src="../../assets/image/play.png" alt="">
+		<!--<div class="videImageDetiles" v-if='dataList.bean.purl == ""' >
+			<img src="http://cogon.artup.net/cogwx/static/img/play.png" alt="">
+		</div>-->
+		<div class="videImageDetiles" v-if="dataList.videos.length > 0">
+			<img src="http://cogon.artup.net/cogwx/static/img/play.png"/>
+			<video v-tap="{methods:videoPlay,url:videos.videoUrl}" :poster="videos.thumbPic == '' ? 'http://cogon.artup.net/cogwx/static/img/spbjt_03.png' : HOST+dataList.videos[0].thumbPic">
+				<source :src="HOST+videos.videoUrl" type="video/mp4"></source>
+			</video>
 		</div>
 		<!-- <router-link to="VoteOk"> -->
 		<div class="bttyi"  v-tap="{methods:onClickHandler}" >
-			<img src="../../assets/image/bangtatouyip_03.png" alt="">
+			<img src="http://cogon.artup.net/cogwx/static/img/bangtatouyip_03.png" alt="">
 		</div>
 		<!-- </router-link> -->
 		<div class="zjjs">
-		    <img v-if = 'dataList.bean.url === ""' src="../../assets/image/tx_03.png"alt="">
-			<img v-else :src="HOST+dataList.bean.url "alt="">
+		    <img v-if = 'dataList.bean.url === ""' src="http://cogon.artup.net/cogwx/static/img/tx_03.png"alt="">
+			<img v-else :src="HOST_IMG+dataList.bean.url+'?200x200' "alt="">
 			<!-- <img src="../../assets/image/tx_03.png" alt=""> -->
-			<h2>简介:</h2>
+			<!--<h2>简介:</h2>-->
 			&nbsp;&nbsp;&nbsp;&nbsp;<p v-html='dataList.bean.remarks'></p>
 		</div>
 		 <router-link to="/">
 			<div class="fhsy">
-			 <img src="../../assets/image/home.png" alt="">
+			 <img src="http://cogon.artup.net/cogwx/static/img/home.png" alt="">
 				返回首页
 			</div>
 		</router-link>
@@ -45,9 +48,11 @@ export default {
       indexImg:[],
       dataList:[],
       HOST:Api.HOST,
+      HOST_IMG:Api.HOST_IMG,
       propBoole:false,
       tittles:'',
-      orderNum:0
+      orderNum:0,
+      videos:''
     }
   },
   methods:{
@@ -55,7 +60,6 @@ export default {
 		var vm = this
 		Api.details.checkVote({uid:this.$route.query.uid,cid:this.$route.query.cid}).then(res=>{
 			 console.log(res)
-			 console.log(res.data.bean)
 			if(res.data.msg === ''){
 				this.$router.push( { path : '/VoteOk', query : { 'cid' : this.$route.query.cid ,'contents':this.tittles,'orderNum':this.orderNum}})
 			}else if(res.data.msg === "请勿重复投票"){
@@ -67,23 +71,39 @@ export default {
 		},err=>{
 
 		})	
-	}	
+	},
+	videoPlay(params){
+  	 if(params.url){
+	        location.href = this.HOST + params.url
+		}else{
+	        alert('没有相关内容')
+	    }
+  	}	
   },
   mounted(){
-
 	Api.details.peopleDetails({uid:this.$route.query.uid,cid:this.$route.query.cid}).then(res=>{
 		this.dataList = res.data
 		this.tittles = res.data.bean.title
 		this.orderNum = res.data.bean.orderNum
-	     console.log(res)
+		this.videos = res.data.videos[0]
+	    console.log(res)
 	},err=>{
 
 	})	
-  }
-
+	var b=document.location.href;
+	var d=document.location.href;
+	
+	if(b.indexOf("?") != -1){
+		b = b.split("?")[0];
+	}
+	//var c = a+b;
+	
+	getInfoByUrl(d,b);
+ }
 }
 </script>
 
 <style>
 	
 </style>
+

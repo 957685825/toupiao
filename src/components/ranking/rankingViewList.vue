@@ -14,7 +14,7 @@
 				<li v-for='itmes in dataList'>
 					<ol class="clearfix">
 						<li><p class="rank-bg ">{{itmes.ranking}}</p></li>
-						<li>妇科内分泌相关病例分享{{itmes.institution}}</li>
+						<li>{{itmes.institution}}</li>
 						<li>{{itmes.name}}</li>
 						<li class="red">{{itmes.totalVote}}</li>
 					</ol>

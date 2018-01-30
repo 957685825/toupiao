@@ -4,6 +4,7 @@ import qs from 'qs'
 Vue.prototype.$http = axios
 // 常量 API 接口地址
 const HOST = HOST_CONFIG;
+const HOST_IMG = HOST_CONFIG_IMG
 
 //图片服务器（静态资源）服务器地址
 const STATIC_SERVER_HOST = HOST_STATIC_SERVER_HOST;
@@ -22,7 +23,10 @@ const CHECK_VOTE = `${STATIC_SERVER_HOST}cogon-wxmeet/wxvote/checkVote`
 
 //投票排行
 const SORT_VOTE = `${STATIC_SERVER_HOST}cogon-wxmeet/wxvote/sortVote`
-
+//活动详情
+const WX_CAMPAIGN = `${STATIC_SERVER_HOST}cogon-wxmeet/wxcampaign/details`
+//往期回顾
+const EXPIRE= `${STATIC_SERVER_HOST}cogon-wxmeet/wxcampaign/expire`
 
 const VueHttp = new Vue();
 
@@ -53,6 +57,9 @@ export default {
       },
       sortVote:(jsons)=>{
         return VueHttp.$http.get(SORT_VOTE,{params:jsons})
+      },
+      expire:(jsons)=>{
+      	return VueHttp.$http.get(EXPIRE,{params:jsons})
       }
 
    },
@@ -102,6 +109,7 @@ export default {
    	 }	   	  
    },
    HOST:HOST,
+   HOST_IMG:HOST_IMG,
    $$ajax(inter,data,callback){	  			
 			if(data && url !=''){
 				console.log('post请求')
