@@ -24,7 +24,9 @@
 					<div class="bottomBox">
 						<img src="http://cogon.artup.net/cogwx/static/img/Watch.png"/>
 						<p class="times">剩余{{itme.countDownMap.dd}}天{{itme.countDownMap.hh}}小时{{itme.countDownMap.mm}}分</p>	
-					<router-link :to="{ path : 'ActivityContent',query:{id:itme.id,expire:itme.expire}}" ><p v-bind:hidden="checkBool" class="find">查看</p></router-link>		
+					<!--<router-link :to="{ path : 'ActivityContent',query:{id:itme.id,expire:itme.expire}}" ><p v-bind:hidden="checkBool" class="find">查看</p></router-link>-->
+					
+					<a :href="goLink+itme.id+'&expire='+itme.expire" ><p v-bind:hidden="checkBool" class="find">查看</p></a>		
 					</div>
 				</div>
 			
@@ -50,7 +52,8 @@ export default {
       dataList : [],
       Host:Api.HOST,
       imgUrl:[],
-      checkBool:false
+      checkBool:false,
+      goLink:Api.GO_LINK
     }
   },
   methods:{

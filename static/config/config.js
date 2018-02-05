@@ -8,3 +8,4 @@ const HOST_CONFIG_IMG = 'http://cogon.artup.net/data/'
 //接口环境
 const HOST_STATIC_SERVER_HOST = 'http://cogon.artup.net/'
 
+

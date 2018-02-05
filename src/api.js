@@ -6,6 +6,8 @@ Vue.prototype.$http = axios
 const HOST = HOST_CONFIG;
 const HOST_IMG = HOST_CONFIG_IMG
 
+const GO_LINK = 'http://cogon.artup.net/cogon-wxmeet/cogsharewx/ActivityContent?id='
+
 //图片服务器（静态资源）服务器地址
 const STATIC_SERVER_HOST = HOST_STATIC_SERVER_HOST;
 
@@ -110,6 +112,7 @@ export default {
    },
    HOST:HOST,
    HOST_IMG:HOST_IMG,
+   GO_LINK:GO_LINK,
    $$ajax(inter,data,callback){	  			
 			if(data && url !=''){
 				console.log('post请求')

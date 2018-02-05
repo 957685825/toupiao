@@ -92,13 +92,12 @@ export default {
 	})	
 	var b=document.location.href;
 	var d=document.location.href;
-	
+	var ajaxUrl = 'http://cogon.artup.net/cogon-wxmeet/cogsharewx/getCandInfo'
 	if(b.indexOf("?") != -1){
 		b = b.split("?")[0];
 	}
 	//var c = a+b;
-	
-	getInfoByUrl(d,b);
+	getInfoByUrl(d,b,ajaxUrl);
  }
 }
 </script>
